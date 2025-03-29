@@ -32,4 +32,12 @@ jobs:
 
             # Step 4: Run tests
             - name: Run tests
-              run: pytest
+              run: |
+                 pytest > result.log cat result.log
+
+             # Step 5: Upload test results
+            - name: Upload test results
+              uses: actions/upload-artifact@v3
+              with:
+                  name: test-results-log
+                  path: result.log
